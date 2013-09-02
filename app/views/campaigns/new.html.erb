@@ -1,0 +1,28 @@
+
+<%= form_for Campaign.new do |f| %>
+	<div>
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+	</div>
+
+	<div>
+		<%= f.label :body %>
+		<%= f.text_area :body %>
+	</div>
+
+	<div>
+		<%= f.label :public %>
+		<%= f.check_box :public %>
+	</div>
+
+	<div>
+		<%= f.label :confirm_deadline %>
+		<%= f.text_field :confirm_deadline %> days
+	</div>
+	<div>
+		<%= f.label :feedback_deadline %>
+		<%= f.text_field :feedback_deadline %> days
+	</div>
+
+	<%= f.submit %>
+<% end %>

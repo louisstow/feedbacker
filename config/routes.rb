@@ -7,6 +7,20 @@ Feedbacker::Application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
+  resources :campaigns, only: [:show, :new, :edit, :create, :update, :destroy] do
+    resources :feedback
+  end
+  resources :users
+  
+  resources :requests
+
+  root 'welcome#index'
+
+  get '/browse' => 'categories#index'
+
+  get '/categories/:name' => 'categories#list'
+
+  get '/signup' => 'users#new'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
