@@ -1,5 +1,16 @@
 
-<%= form_for Campaign.new do |f| %>
+<%= form_for @campaign do |f| %>
+	<% if @campaign && @campaign.errors.any? %>
+		<div class="errors">
+			<h2><%= pluralize(@campaign.errors.count, "error") %> in your application:</h2>
+			<ul>
+			<% @campaign.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+
 	<div>
 		<%= f.label :title %>
 		<%= f.text_field :title %>
@@ -11,17 +22,27 @@
 	</div>
 
 	<div>
-		<%= f.label :public %>
-		<%= f.check_box :public %>
+		<label class="tier">
+			<%= f.radio_button :list_type, :public %>
+			<strong>Public</strong>
+			Anyone can see and respond to this campaign.
+		</label><br />
+		<label class="tier">
+			<%= f.radio_button :list_type, :private %>
+			<strong>Private</strong>
+			You choose from a short-list of reputable feedbackers.
+		</label>
 	</div>
 
-	<div>
-		<%= f.label :confirm_deadline %>
-		<%= f.text_field :confirm_deadline %> days
-	</div>
-	<div>
-		<%= f.label :feedback_deadline %>
-		<%= f.text_field :feedback_deadline %> days
+	<div class="private-fields">
+		<div>
+			<%= f.label :confirm_deadline_days %>
+			<%= f.text_field :confirm_deadline_days %>
+		</div>
+		<div>
+			<%= f.label :feedback_deadline_days %>
+			<%= f.text_field :feedback_deadline_days %>
+		</div>
 	</div>
 
 	<%= f.submit %>

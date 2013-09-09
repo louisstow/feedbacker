@@ -1,15 +1,40 @@
 class CampaignsController < ApplicationController
-	def index
-		@campaigns = Campaign.all;
+	before_action :require_login
+
+	def show
+		campaign = Campaign.find(params[:id])
+
+		if campaign.is_public
+			@campaign = campaign
+		else
+			if campaign.user_id == session[:user_id]
+				@campaign = campaign
+			else
+				redirect_to root_path, notice: "Private campaign."
+			end
+		end	
+	end
+
+	def new
+		@campaign = Campaign.new
 	end
 
 	def create
-		@campaign = Campaign.new(params.require(:campaign).permit(:title, :body, :confirm_deadline, :feedback_deadline))
+		vals = params[:campaign].permit(:title, :body, :list_type, :confirm_deadline_days, :feedback_deadline_days)
+		@campaign = Campaign.new(vals)
+		@campaign.user_id = session[:user_id]
 
-		if (@campaign.save)
-			redirect_to campaigns_path
+		if @campaign.save
+			redirect_to root_path
 		else
-			render 'index'
+			render 'new'
+		end
+	end
+
+	private
+	def require_login
+		unless logged_in?
+			redirect_to root_path, notice: "Must be logged in"
 		end
 	end
 end

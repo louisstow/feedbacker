@@ -14,6 +14,8 @@ Feedbacker::Application.routes.draw do
   
   resources :requests
 
+  resources :session
+
   root 'welcome#index'
 
   get '/browse' => 'categories#index'
@@ -21,6 +23,8 @@ Feedbacker::Application.routes.draw do
   get '/categories/:name' => 'categories#list'
 
   get '/signup' => 'users#new'
+  get '/login' => 'session#new'
+  get '/logout' => 'session#destroy'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

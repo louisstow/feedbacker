@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130902053318) do
+ActiveRecord::Schema.define(version: 20130907083630) do
+
+  create_table "campaign_categorizations", id: false, force: true do |t|
+    t.integer "campaign_id"
+    t.integer "category_id"
+  end
 
   create_table "campaigns", force: true do |t|
     t.string   "title"
@@ -21,7 +26,7 @@ ActiveRecord::Schema.define(version: 20130902053318) do
     t.datetime "feedback_deadline"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "public"
+    t.boolean  "is_public"
   end
 
   create_table "categories", force: true do |t|
@@ -46,12 +51,16 @@ ActiveRecord::Schema.define(version: 20130902053318) do
     t.datetime "updated_at"
   end
 
+  create_table "user_categorizations", id: false, force: true do |t|
+    t.integer "category_id"
+    t.integer "user_id"
+  end
+
   create_table "users", force: true do |t|
     t.string   "full_name"
     t.string   "email"
     t.string   "bio"
-    t.string   "tags"
-    t.string   "password"
+    t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,6 +1,6 @@
 <h2>Signup</h2>
 
-<%= form_for User.new do |f| %>
+<%= form_for @user do |f| %>
 
 <% if @user && @user.errors.any? %>
 	<div class="errors">
@@ -34,8 +34,8 @@
 </p>
 
 <p>
-	<%= f.label :category %>
-	<%= f.select :category, @categories, {}, {multiple: true} %>
+	<%= f.label :tag_list %>
+	<%= f.text_field :tag_list %>
 </p>
 
 <%= f.submit %>
