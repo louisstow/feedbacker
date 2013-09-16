@@ -9,63 +9,30 @@ class Campaign < ActiveRecord::Base
 	has_many :campaign_categorizations
 	has_many :categories, through: :campaign_categorizations
 
-	has_many :feedbacks
+	has_many :feedback
+
+	accepts_nested_attributes_for :feedback
 
 	validates :title, presence: true, length: { minimum: 5 }
 	validates :body, presence: true, length: { minimum: 150 }
-	validates :list_type, presence: true
+	validates :tag_list, presence: true
 
-	validates :confirm_deadline_days, 
-		presence: true, 
-		numericality: { only_integer: true, greater_than: 0 }, 
-		if: :is_private?
-
-	validates :feedback_deadline_days, 
-		presence: true, 
-		numericality: { only_integer: true, greater_than: 0 }, 
-		if: :is_private?
-
-	validate :deadline_correctness
-
-	def confirm_deadline_days
-		@confirm_deadline_days
+	def tag_list
+		categories.map(&:name).join(", ")
 	end
 
-	def feedback_deadline_days
-		@feedback_deadline_days
-	end
+	def tag_list=(names)
+		names = names.split(",")
+		names.each do |c|
+			cat = Category.where(name: c.strip).first
 
-	def list_type
-		if is_public == false
-			'private'
-		else
-			'public'
+			if cat
+				self.categories << cat
+			end
 		end
 	end
 
-	def is_private?
-		!is_public
+	def to_param
+		"#{id}/#{title}".parameterize
 	end
-
-	def deadline_correctness
-		if self.confirm_deadline_days.to_i >= self.feedback_deadline_days.to_i
-			self.errors.add :base, "Confirm deadline must be before feedback deadline"
-		end
-	end
-	
-	def list_type=(value)
-		self.is_public = value == 'public'
-	end
-
-	def confirm_deadline_days=(days)
-		t = Time.now + days.to_i.days
-		self.confirm_deadline = t
-		@confirm_deadline_days = days
-	end
-
-	def feedback_deadline_days=(days)
-		t = Time.now + days.to_i.days
-		self.feedback_deadline = t
-		@feedback_deadline_days = days
-	end	
 end

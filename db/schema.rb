@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130907083630) do
+ActiveRecord::Schema.define(version: 20130916040235) do
 
   create_table "campaign_categorizations", id: false, force: true do |t|
     t.integer "campaign_id"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 20130907083630) do
     t.datetime "updated_at"
   end
 
+  create_table "comments", force: true do |t|
+    t.integer  "user_id"
+    t.text     "body"
+    t.integer  "feedback_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "feedbacks", force: true do |t|
     t.integer  "campaign_id"
     t.integer  "user_id"
@@ -54,6 +62,7 @@ ActiveRecord::Schema.define(version: 20130907083630) do
   create_table "user_categorizations", id: false, force: true do |t|
     t.integer "category_id"
     t.integer "user_id"
+    t.integer "score"
   end
 
   create_table "users", force: true do |t|
@@ -63,6 +72,7 @@ ActiveRecord::Schema.define(version: 20130907083630) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "score"
   end
 
 end

@@ -13,7 +13,6 @@ class User < ActiveRecord::Base
 	validates :full_name, presence: true, length: { minimum: 2 }
 	validates :bio, presence: true, length: { maximum: 500 }
 	validates :email, presence: true, uniqueness: true
-	
 	validates :tag_list, presence: true
 
 	has_secure_password validations: false

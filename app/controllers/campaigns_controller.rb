@@ -1,18 +1,8 @@
 class CampaignsController < ApplicationController
-	before_action :require_login
+	before_action :require_login, only: [:create, :new]
 
 	def show
-		campaign = Campaign.find(params[:id])
-
-		if campaign.is_public
-			@campaign = campaign
-		else
-			if campaign.user_id == session[:user_id]
-				@campaign = campaign
-			else
-				redirect_to root_path, notice: "Private campaign."
-			end
-		end	
+		@campaign = Campaign.find(params[:id])
 	end
 
 	def new
@@ -20,7 +10,7 @@ class CampaignsController < ApplicationController
 	end
 
 	def create
-		vals = params[:campaign].permit(:title, :body, :list_type, :confirm_deadline_days, :feedback_deadline_days)
+		vals = params[:campaign].permit(:title, :body, :tag_list)
 		@campaign = Campaign.new(vals)
 		@campaign.user_id = session[:user_id]
 
@@ -28,13 +18,6 @@ class CampaignsController < ApplicationController
 			redirect_to root_path
 		else
 			render 'new'
-		end
-	end
-
-	private
-	def require_login
-		unless logged_in?
-			redirect_to root_path, notice: "Must be logged in"
 		end
 	end
 end

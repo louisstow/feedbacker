@@ -7,9 +7,12 @@ Feedbacker::Application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-  resources :campaigns, only: [:show, :new, :edit, :create, :update, :destroy] do
-    resources :feedback
+  resources :campaigns, only: [:show, :new, :edit, :create, :update, :destroy]
+
+  resources :feedbacks do
+    resources :comments
   end
+
   resources :users
   
   resources :requests
@@ -21,6 +24,7 @@ Feedbacker::Application.routes.draw do
   get '/browse' => 'categories#index'
 
   get '/categories/:name' => 'categories#list'
+  get '/categories/:name/top-users' => 'categories#top_users'
 
   get '/signup' => 'users#new'
   get '/login' => 'session#new'

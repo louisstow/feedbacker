@@ -2,6 +2,9 @@
 
 <ul>
 <% @categories.each do |c| %>
-	<li><%= link_to c.name, '/categories/' << c.name %></li>
+	<li>
+		<%= link_to c.name, '/categories/' << c.name %>
+		
+	</li>
 <% end %>
 </ul>

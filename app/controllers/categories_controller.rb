@@ -4,6 +4,17 @@ class CategoriesController < ApplicationController
 	end
 
 	def list
-		@campaigns = Campaign.find_by_category(params[:name])
+		@campaigns = Category
+			.find_by_name!(params[:name])
+			.campaigns
+	end
+
+	def top_users
+		@users = Category
+			.find_by_name(params[:name])
+			.user_categorizations
+			.joins(:user)
+			.select("user_categorizations.*, users.id, users.full_name, users.score as karma")
+			.order("user_categorizations.score desc")
 	end
 end

@@ -22,27 +22,8 @@
 	</div>
 
 	<div>
-		<label class="tier">
-			<%= f.radio_button :list_type, :public %>
-			<strong>Public</strong>
-			Anyone can see and respond to this campaign.
-		</label><br />
-		<label class="tier">
-			<%= f.radio_button :list_type, :private %>
-			<strong>Private</strong>
-			You choose from a short-list of reputable feedbackers.
-		</label>
-	</div>
-
-	<div class="private-fields">
-		<div>
-			<%= f.label :confirm_deadline_days %>
-			<%= f.text_field :confirm_deadline_days %>
-		</div>
-		<div>
-			<%= f.label :feedback_deadline_days %>
-			<%= f.text_field :feedback_deadline_days %>
-		</div>
+		<%= f.label :tag_list %>
+		<%= f.text_field :tag_list %>
 	</div>
 
 	<%= f.submit %>

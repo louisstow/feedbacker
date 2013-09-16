@@ -1,0 +1,21 @@
+<h2><%= params[:name] %></h2>
+
+<ul class="small nav">
+	<li><a href="/categories/<%= params[:name] %>/top-users">Top Users</a></li>
+</ul>
+
+<% @campaigns.each do |c| %>
+	<div class="campaign">
+		<strong><%= link_to c.title, c %></strong>
+		<div class="short">
+			<%= truncate c.body, length: 150, separator: ' ' %>
+		</div>
+		<div class="tag_list">
+		<% c.categories.each do |cat| %>
+			<span class="tag">
+				<%= link_to cat.name, "/categories/#{cat.name}" %>
+			</span>
+		<% end %>
+		</div>
+	</div>
+<% end %>

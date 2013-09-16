@@ -1,0 +1,65 @@
+<h2><%= @campaign.title %></h2>
+
+<div class="body">
+<%= @campaign.body %>
+</div>
+
+<div class="tag_list">
+<% @campaign.categories.each do |c| %>
+	<span class="tag">
+		<%= link_to c.name, "/categories/#{c.name}" %>
+	</span>
+<% end %>
+</div>
+
+<div class="feedbacks">
+<h3><%= pluralize(@campaign.feedback.count, "Feedbacks") %></h3>
+<% @campaign.feedback.each do |feedback| %>
+	<div class="feedback">
+		<div class="user">
+			<strong><%= feedback.user.full_name %></strong>
+			<%= feedback.user.score %>
+		</div>
+
+		<%= feedback.body %>
+
+		<div class="belt">
+			<% if feedback.user_id == session[:user_id] %>
+				<%= link_to 'edit', edit_feedback_path(feedback) %>
+
+				<%= link_to 'remove', feedback, method: :delete %>
+			<% end %>
+		</div>
+
+		<div class="comments">
+			<% feedback.comments.each do |comment| %>
+				<div class="comment">
+					<%= comment.body %>
+					&mdash;
+					<%= comment.user.full_name %>
+				</div>
+			<% end %>
+
+			<div class="comment-form">
+			<%= form_for [feedback, feedback.comments.build] do |f| %>
+
+				<%= f.text_area :body %>
+				<%= f.submit %>
+			<% end %>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<% if session[:user_id] != @campaign.user_id %>
+	<div class="feedback-form">
+	<h3>Leave some feedback</h3>
+	<%= form_for @campaign.feedback.build do |f| %>
+		<%= f.hidden_field :campaign_id, value: @campaign.id %>
+		<%= f.text_area :body %>
+		<%= f.submit %>
+	<% end %>
+	</div>
+<% end %>
+
+</div>
