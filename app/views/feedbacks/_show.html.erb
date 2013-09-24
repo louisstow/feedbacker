@@ -1,0 +1,26 @@
+<div class="feedback">
+	<%= render 'users/small', user: feedback.user %>
+
+	<div class="body"><%= feedback.body %></div>
+
+	<% if feedback.user_id == session[:user_id] %>
+		<%= form_for feedback do |f| %>
+			<%= f.text_area :body %>
+			<%= f.submit %>
+		<% end %>
+	<% end %>
+
+	<%= render 'feedbacks/rating', feedback: feedback %>
+
+	<div class="belt">
+		<% if feedback.user_id == session[:user_id] %>
+			<a href="#edit" class="edit_feedback_button">edit</a>
+
+			<%= link_to 'remove', feedback, method: :delete %>
+		<% end %>
+	</div>
+
+	<div class="comments">
+		<%= render 'comments/show', feedback: feedback %>
+	</div>
+</div>

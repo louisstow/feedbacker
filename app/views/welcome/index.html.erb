@@ -1,5 +1,5 @@
 <div class="section">
-	<h1>Get instant feedback for your ideas!</h1>
+	<h1>Get feedback for your ideas!</h1>
 	<a href="/campaigns/new" class="big button">Create a Campaign</a>
 </div>
 
@@ -7,14 +7,8 @@
 	<h2>Give feedback</h2>
 	
 	<ul>
-		<li>
-			<a href="">Pixel game</a>
-		</li>
-		<li>
-			<a href="">Private micro-blogging and time management tool</a>
-		</li>
-		<li>
-			<a href="">Which call to action sounds better?</a>
-		</li>
+		<% @recent.each do |c| %>
+			<%= render 'campaigns/small', campaign: c %>
+		<% end %>
 	</ul>
 </div>

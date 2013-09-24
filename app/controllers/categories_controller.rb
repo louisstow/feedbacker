@@ -1,6 +1,10 @@
 class CategoriesController < ApplicationController
 	def index
 		@categories = Category.all
+
+		if params[:format] == 'json'
+			return render json: @categories
+		end
 	end
 
 	def list

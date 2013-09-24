@@ -5,17 +5,5 @@
 </ul>
 
 <% @campaigns.each do |c| %>
-	<div class="campaign">
-		<strong><%= link_to c.title, c %></strong>
-		<div class="short">
-			<%= truncate c.body, length: 150, separator: ' ' %>
-		</div>
-		<div class="tag_list">
-		<% c.categories.each do |cat| %>
-			<span class="tag">
-				<%= link_to cat.name, "/categories/#{cat.name}" %>
-			</span>
-		<% end %>
-		</div>
-	</div>
+	<%= render 'campaigns/small', campaign: c %>
 <% end %>

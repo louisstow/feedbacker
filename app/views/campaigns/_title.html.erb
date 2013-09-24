@@ -1,0 +1,6 @@
+<div class="campaign">
+	<strong><%= link_to campaign.title, campaign_path(campaign) %></strong>
+	<div class="short">
+		<%= truncate campaign.body, length: 150, separator: ' ' %>
+	</div>
+</div>

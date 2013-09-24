@@ -1,2 +1,22 @@
-<h2><%= @user.full_name %></h2>
+<div class="profile">
+	<div class="photo">
+		<img src="http://www.gravatar.com/avatar/<%= @user.gravatar %>?s=80&default=mm" />
+	</div>
+<h2><%= @user.full_name %> <span class="score"><%= @user.score %></span></h2>
 <p><%= @user.bio %></p>
+
+<h3>Campaigns</h3>
+<% @campaigns.each do |c| %>
+	<%= render 'campaigns/title', campaign: c %>
+<% end %>
+
+<h3>Feedbacks</h3>
+<% @feedback.each do |c| %>
+	<%= render 'campaigns/title', campaign: c %>
+<% end %>
+
+<h3>Top Categories</h3>
+<% @tags.each do |t| %>
+	<%= render 'categories/tag', tag: t, count: t.score %>
+<% end %>
+</div>

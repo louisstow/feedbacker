@@ -26,7 +26,7 @@ class Campaign < ActiveRecord::Base
 		names.each do |c|
 			cat = Category.where(name: c.strip).first
 
-			if cat
+			if cat && !self.categories.exists?(cat)
 				self.categories << cat
 			end
 		end

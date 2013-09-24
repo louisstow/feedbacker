@@ -1,0 +1,5 @@
+<div class="review">
+	<%= button_to "good", "/feedback/#{feedback.id}/rate", method: "post", name: "rating", class: feedback.rating == 1 ? "active" : ""  %>
+
+	<%= button_to "bad", "/feedback/#{feedback.id}/rate", method: "post", name: "rating", class: feedback.rating == -1 ? "active" : ""  %>
+</div>

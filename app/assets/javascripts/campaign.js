@@ -17,4 +17,49 @@ $(function () {
 	} else {
 		$(".private-fields").hide();	
 	}
+
+	
+	$(".body").each(function () {
+		$(this).html(prettify($(this).text()));
+	});
 })
+
+function prettify (text) {
+	text = escapeHtml(text);
+
+	var lines = text.split("\n");
+	var rendered = "";
+	var line;
+	var openCode = false;
+
+	for (var i = 0; i < lines.length; ++i) {
+		line = lines[i];
+		if (!lines[i] && openCode === false) { continue; }
+		console.log(line)
+
+		if (line === "~") {
+			if (openCode !== false) { openCode = false; }
+			else { openCode = i; }
+		}
+
+		if (openCode !== false) {
+			rendered += line + "\n";
+		} else {
+			line = line.replace(/^((question|q)[:.,\/].*)/gi, "<strong class='question'>$1</strong>");
+			line = line.replace(/^((a|answer)[:.,\/].*)/gi, "<strong class='answer'>$1</strong>");
+
+			rendered += "<p>" + line + "</p>";
+		}
+	}
+
+	rendered = rendered.replace(/(http(s)?:\/\/[^ '"\n<>]+)/g, "<a href='$1'>$1</a>");
+	
+	rendered = rendered.replace(/`([^`]+)`/g, "<code>$1</code>");
+
+	rendered = rendered.replace(/\~([^\~]+)\~/g, "<code><pre>$1</pre></code>");
+
+	rendered = rendered.replace(/\*([^\*]+)\*/g, "<em>$1</em>");
+	
+	
+	return rendered;
+}

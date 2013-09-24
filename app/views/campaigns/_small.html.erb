@@ -1,0 +1,13 @@
+<div class="campaign">
+	<strong><%= link_to campaign.title, campaign %></strong>
+	<div class="short">
+		<%= truncate campaign.body, length: 150, separator: ' ' %>
+	</div>
+	<div class="tag_list">
+	<% campaign.categories.each do |cat| %>
+		<span class="tag">
+			<%= link_to cat.name, "/categories/#{cat.name}" %>
+		</span>
+	<% end %>
+	</div>
+</div>

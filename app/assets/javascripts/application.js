@@ -13,3 +13,21 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+var entityMap = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': '&quot;',
+    "'": '&#39;'
+};
+
+function escapeHtml (string) {
+    if (string === null || string === undefined) {
+        return string;
+    }
+
+    return String(string).replace(/[&<>"']/g, function (s) {
+        return entityMap[s];
+    });
+}

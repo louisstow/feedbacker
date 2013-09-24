@@ -1,4 +1,6 @@
 Feedbacker::Application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -25,10 +27,13 @@ Feedbacker::Application.routes.draw do
 
   get '/categories/:name' => 'categories#list'
   get '/categories/:name/top-users' => 'categories#top_users'
+  get '/categories/' => 'categories#index'
 
   get '/signup' => 'users#new'
   get '/login' => 'session#new'
   get '/logout' => 'session#destroy'
+
+  post '/feedback/:feedback_id/rate' => 'feedbacks#rate'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

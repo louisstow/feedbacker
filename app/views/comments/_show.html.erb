@@ -1,0 +1,22 @@
+<% feedback.comments.each do |comment| %>
+	<div class="comment">
+		<%= comment.body %>
+		&mdash;
+		<%= comment.user.full_name %>
+
+		<% if comment.user_id == current_user_id %>
+			<%= link_to 'delete', [feedback, comment], method: :delete %>
+		<% end %>
+	</div>
+<% end %>
+
+<% if logged_in? %>
+	<div class="comment-form">
+	
+	<%= form_for [feedback, feedback.comments.build] do |f| %>
+
+		<%= f.text_area :body %>
+		<%= f.submit %>
+	<% end %>
+	</div>
+<% end %>

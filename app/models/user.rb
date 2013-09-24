@@ -32,4 +32,13 @@ class User < ActiveRecord::Base
 			end
 		end
 	end
+
+	def giveKarma (amount)
+		increment(:score, amount)
+	end
+
+	def giveKarma! (amount)
+		giveKarma amount
+		save(validate: false)
+	end
 end
