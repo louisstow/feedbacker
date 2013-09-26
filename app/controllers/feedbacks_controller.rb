@@ -40,6 +40,11 @@ class FeedbacksController < ApplicationController
 			return redirect_to root_path, notice: "Cannot remove other feedback"
 		end
 
+		# remove the earnt karma
+		if @feedback.rating == 1
+			@feedback.user.giveKarma!(-1)
+		end
+
 		@feedback.destroy
 		redirect_to campaign_path(@feedback.campaign), notice: "Feedback removed"
 	end
@@ -66,12 +71,17 @@ class FeedbacksController < ApplicationController
 			return redirect_to @feedback.campaign
 		end
 
+		karma = rating
+		if @feedback.rating
+			karma = rating * 2
+		end
+
 		@feedback.rating = rating
 		@feedback.save
 
 		# Give a karma point to feedback owner
 		# Give a karma point for each category of owner
-		@feedback.user.giveKarma!(rating)
+		@feedback.user.giveKarma!(karma)
 
 		@feedback.campaign.categories.each do |cat|
 			tag = UserCategorization.find_or_create_by(category_id: cat.id, user_id: @feedback.user_id)

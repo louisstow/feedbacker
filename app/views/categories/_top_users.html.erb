@@ -1,0 +1,9 @@
+<h2>Top Users in <%= params[:name] %></h2>
+
+<% @users.each do |u| %>
+	<div class="user">
+		<strong>
+			<%= link_to u.full_name, controller: "users", action: "show", id: u.user_id %></strong>
+		<span class="score"><%= u.score %></span>
+	</div>
+<% end %>

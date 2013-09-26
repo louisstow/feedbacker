@@ -22,6 +22,8 @@ $(function () {
 	$(".body").each(function () {
 		$(this).html(prettify($(this).text()));
 	});
+
+	$("#campaign_category_ids").chosen()
 })
 
 function prettify (text) {
@@ -35,7 +37,6 @@ function prettify (text) {
 	for (var i = 0; i < lines.length; ++i) {
 		line = lines[i];
 		if (!lines[i] && openCode === false) { continue; }
-		console.log(line)
 
 		if (line === "~") {
 			if (openCode !== false) { openCode = false; }
@@ -52,13 +53,15 @@ function prettify (text) {
 		}
 	}
 
-	rendered = rendered.replace(/(http(s)?:\/\/[^ '"\n<>]+)/g, "<a href='$1'>$1</a>");
+	rendered = rendered.replace(/(http(s)?:\/\/[^ '"\n<>\]\[\*!@\(\)]+)/g, "<a href='$1'>$1</a>");
 	
 	rendered = rendered.replace(/`([^`]+)`/g, "<code>$1</code>");
 
 	rendered = rendered.replace(/\~([^\~]+)\~/g, "<code><pre>$1</pre></code>");
 
 	rendered = rendered.replace(/\*([^\*]+)\*/g, "<em>$1</em>");
+
+	rendered = rendered.replace(/\[<a href='([^']+)'>([^<]+)<\/a>\]/g, "<img src='$1' />");
 	
 	
 	return rendered;

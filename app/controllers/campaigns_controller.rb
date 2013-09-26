@@ -1,5 +1,5 @@
 class CampaignsController < ApplicationController
-	before_action :require_login, only: [:create, :new, :edit, :update, :destroy]
+	before_action :require_login, only: [:create, :edit, :update, :destroy]
 
 	def show
 		@campaign = Campaign.find(params[:id])
@@ -11,7 +11,7 @@ class CampaignsController < ApplicationController
 	end
 
 	def create
-		vals = params[:campaign].permit(:title, :body, :tag_list)
+		vals = params[:campaign].permit(:title, :body, {:category_ids => []})
 		@campaign = Campaign.new(vals)
 		@campaign.user_id = current_user_id
 

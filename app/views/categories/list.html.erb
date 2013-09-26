@@ -1,9 +1,9 @@
 <h2><%= params[:name] %></h2>
 
-<ul class="small nav">
-	<li><a href="/categories/<%= params[:name] %>/top-users">Top Users</a></li>
-</ul>
-
 <% @campaigns.each do |c| %>
 	<%= render 'campaigns/small', campaign: c %>
 <% end %>
+
+<div class="section">
+	<%= render 'top_users' %>
+</div>

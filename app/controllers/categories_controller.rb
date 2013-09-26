@@ -11,9 +11,7 @@ class CategoriesController < ApplicationController
 		@campaigns = Category
 			.find_by_name!(params[:name])
 			.campaigns
-	end
 
-	def top_users
 		@users = Category
 			.find_by_name(params[:name])
 			.user_categorizations

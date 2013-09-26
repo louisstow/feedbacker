@@ -15,6 +15,7 @@
  *= require categories
  *= require users
  *= require welcome
+ *= require chosen.min
  */
 
 cite {

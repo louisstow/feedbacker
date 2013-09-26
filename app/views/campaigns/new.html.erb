@@ -24,8 +24,13 @@
 
 	<div>
 		<%= f.label :tag_list %>
-		<%= f.text_field :tag_list %>
+		
+		<%= f.select :category_ids, Category.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
 	</div>
+
+	<% if !logged_in? %>
+		<%= render 'users/new' %>
+	<% end %>
 
 	<%= f.submit %>
 <% end %>

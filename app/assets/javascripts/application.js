@@ -12,7 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-
+//= require campaign
+//= require feedbacks
+//= require chosen.jquery.min
 
 var entityMap = {
     "&": "&amp;",
