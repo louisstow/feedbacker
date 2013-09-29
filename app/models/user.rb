@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 	validates :tag_list, presence: true
 
 	has_secure_password validations: false
-	validates :password, presence: true, length: { minimum: 5 }
+	validates :password, presence: true, length: { minimum: 5 }, on: :create
 
 	def tag_list
 		categories.map(&:name).join(", ")

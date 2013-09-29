@@ -26,14 +26,15 @@ Feedbacker::Application.routes.draw do
   get '/browse' => 'categories#index'
 
   get '/categories/:name' => 'categories#list'
-  get '/categories/:name/top-users' => 'categories#top_users'
   get '/categories/' => 'categories#index'
 
   get '/signup' => 'users#new'
   get '/login' => 'session#new'
   get '/logout' => 'session#destroy'
+  get '/change-password' => 'users#change_password'
 
   post '/feedback/:feedback_id/rate' => 'feedbacks#rate'
+  post '/change-password' => 'users#change_password!'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

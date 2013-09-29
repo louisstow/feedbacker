@@ -1,7 +1,17 @@
 <div class="profile">
 	<div class="photo">
 		<img src="http://www.gravatar.com/avatar/<%= @user.gravatar %>?s=80&default=mm" />
+
+		<% if current_user_id == @user.id %>
+		<a href="https://en.gravatar.com/site/login" target="_blank">Change your avatar at Gravatar.com</a>
+		<% end %>
 	</div>
+
+<% if current_user_id == @user.id %>
+	<%= link_to 'Settings', edit_user_path(@user) %>
+	<a href="/change-password">Change Password</a>
+<% end %>
+
 <h2><%= @user.full_name %> <span class="score"><%= @user.score %></span></h2>
 <p><%= @user.bio %></p>
 
