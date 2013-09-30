@@ -39,6 +39,7 @@ gem 'composite_primary_keys'
 
 gem 'activeadmin', github: 'gregbell/active_admin', branch: 'rails4'
 
+#gem 'activerecord-import', '0.4.0'
 # Use unicorn as the app server
 # gem 'unicorn'
 

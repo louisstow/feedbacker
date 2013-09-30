@@ -11,6 +11,9 @@ class FeedbacksController < ApplicationController
 		@feedback = @campaign.feedback.new(params[:feedback].permit(:body))
 		@feedback.user_id = session[:user_id]
 
+		# leave a notification for the owner
+		Notification.create({user_id: @campaign.user_id, body: "<span data-id='#{@campaign.id}'>Feedback created on your campaign, #{@campaign.title}</span>"})
+
 		if @feedback.save
 			redirect_to @campaign, notice: "Feedback saved"
 		else
@@ -25,11 +28,14 @@ class FeedbacksController < ApplicationController
 		end
 
 		@feedback.update(params[:feedback].permit(:body))
+		campaign = @feedback.campaign
+
+		Notification.create({user_id: campaign.user_id, body: "<span data-id='#{campaign.id}'>Feedback updated on your campaign, #{campaign.title}</span>"})
 
 		if @feedback.save
-			redirect_to campaign_path(@feedback.campaign), notice: "Feedback updated"
+			redirect_to campaign, notice: "Feedback updated"
 		else
-			redirect_to campaign_path(@feedback.campaign), notice: "Feedback could not be updated"
+			redirect_to campaign, notice: "Feedback could not be updated"
 		end
 	end
 
@@ -45,8 +51,11 @@ class FeedbacksController < ApplicationController
 			@feedback.user.giveKarma!(-1)
 		end
 
+		campaign = @feedback.campaign
+		Notification.create({user_id: campaign.user_id, body: "<span data-id='#{campaign.id}'>Feedback removed on your campaign, #{campaign.title}</span>"})
+
 		@feedback.destroy
-		redirect_to campaign_path(@feedback.campaign), notice: "Feedback removed"
+		redirect_to campaign, notice: "Feedback removed"
 	end
 
 	def report
@@ -90,7 +99,8 @@ class FeedbacksController < ApplicationController
 			tag.save()
 		end
 
-		
+		campaign = @feedback.campaign
+		Notification.create({user_id: @feedback.user_id, body: "<span data-id='#{campaign.id}'>Your feedback recieved a #{params[:rating]} rating</span>"})
 
 		redirect_to @feedback.campaign
 	end

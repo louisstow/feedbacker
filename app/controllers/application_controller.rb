@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :current_user_id
   helper_method :logged_in?
+  helper_method :notifications
 
   private
   def current_user
@@ -24,5 +25,9 @@ class ApplicationController < ActionController::Base
     unless logged_in?
       redirect_to root_path, notice: "Must be logged in"
     end
+  end
+
+  def notifications
+    @notifications ||= current_user.notifications
   end
 end

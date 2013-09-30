@@ -39,6 +39,10 @@ class CampaignsController < ApplicationController
 		vals = params[:campaign].permit(:title, :body, :tag_list)
 		@campaign.update(vals)
 
+		@campaign.feedback.each do |f|
+			Notification.create({user_id: f.user_id, body: "<span data-id='#{@campaign.id}'>Campaign, #{@campaign.title}, has been updated</span>"})
+		end
+
 		if @campaign.save
 			redirect_to @campaign, notice: "Changes saved"
 		else

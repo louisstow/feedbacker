@@ -23,8 +23,9 @@
 	</div>
 
 	<div>
-		<%= f.label :tag_list %>
-		<%= f.text_field :tag_list %>
+		<%= f.label :category_ids, "Categories" %>
+		
+		<%= f.select :category_ids, Category.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
 	</div>
 
 	<%= f.submit %>

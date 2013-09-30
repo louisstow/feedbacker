@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
 	has_many :campaigns
 	has_many :feedbacks
+	has_many :notifications
 
 	validates :full_name, presence: true, length: { minimum: 2 }
 	validates :bio, presence: true, length: { maximum: 500 }

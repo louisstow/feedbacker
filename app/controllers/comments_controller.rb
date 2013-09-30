@@ -7,6 +7,8 @@ class CommentsController < ApplicationController
 
 		@comment.user_id = current_user_id
 
+		Notification.create({user_id: @feedback.user_id, body: "<span data-id='#{@feedback.campaign.id}'>Comment left on your feedback</span>"})
+
 		if @comment.save
 			redirect_to @feedback.campaign, notice: "Comment created"
 		else
