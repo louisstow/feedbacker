@@ -23,7 +23,7 @@ $(function () {
 		$(this).html(prettify($(this).text()));
 	});
 
-	$("#campaign_category_ids").chosen()
+	$("#campaign_category_ids").chosen({max_selected_options: 5})
 })
 
 function prettify (text) {

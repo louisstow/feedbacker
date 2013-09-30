@@ -13,11 +13,15 @@ class User < ActiveRecord::Base
 	validates :full_name, presence: true, length: { minimum: 2 }
 	validates :bio, presence: true, length: { maximum: 500 }
 	validates :email, presence: true, uniqueness: true
-	validates :tag_list, presence: true
+	validates :category_ids, length: {maximum: 3, message: " must be 3 or less"}
 
 	has_secure_password validations: false
 	validates :password, presence: true, length: { minimum: 5 }, on: :create
 
+	validates :access_code, inclusion: { in: ['crackerbacker'], message: " is invalid" }
+
+	attr_accessor :access_code
+	
 	def tag_list
 		categories.map(&:name).join(", ")
 	end
@@ -41,4 +45,5 @@ class User < ActiveRecord::Base
 		giveKarma amount
 		save(validate: false)
 	end
+
 end

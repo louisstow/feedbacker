@@ -34,8 +34,13 @@
 </p>
 
 <p>
-	<%= f.label :tag_list %>
-	<%= f.text_field :tag_list %>
+	<%= f.label :category_ids, "Categories" %>
+	<%= f.select :category_ids, Category.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
+</p>
+
+<p>
+	<%= f.label :access_code %>
+	<%= f.text_field :access_code %>
 </p>
 
 <%= f.submit %>

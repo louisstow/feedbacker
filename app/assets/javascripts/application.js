@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require campaign
 //= require feedbacks
+//= require users
 //= require chosen.jquery.min
 
 var entityMap = {

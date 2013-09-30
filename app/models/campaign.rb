@@ -13,6 +13,7 @@ class Campaign < ActiveRecord::Base
 
 	validates :title, presence: true, length: { minimum: 5 }
 	validates :body, presence: true, length: { minimum: 150 }
+	validates :category_ids, length: {maximum: 5, message: " must be 5 or less"}
 
 	def to_param
 		"#{id}/#{title}".parameterize

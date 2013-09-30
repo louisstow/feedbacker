@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		@user = User.new(params.require(:user).permit(:full_name, :email, :bio, :tag_list, :password))
+		@user = User.new(params.require(:user).permit(:full_name, :email, :bio, {:category_ids => []}, :password, :access_code))
 		@user.gravatar = Digest::MD5.hexdigest(@user.email)
 		
 		if @user.save
