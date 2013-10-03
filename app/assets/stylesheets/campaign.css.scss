@@ -1,45 +1,55 @@
-// Place all the styles related to the Campaign controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$lg: rgb(242,237,228);
+$mg: rgb(217,209,199);
+$dg: rgb(140,134,129);
 
-.sidebar {
-	float: right;
-	width: 250px;
+.campaign, .small-profile {
+	border:1px solid $mg;
+}
+.campaign .body {
+	padding-top:0.9em;
+}
+.campaign p, .campaign pre, .feedback p, .feedback pre {
+	margin:0 0 0.9em 0;
+}
+.feedbacks, .feedback {
+	border:1px solid $mg;
+}
+.campaign, .campaign pre, .small-profile, .feedbacks {
+	padding:0.9em;
+}
+.campaign .body, .comment {
+	border-top:1px dotted $mg;
+}
+.feedback {
+	margin-top:1em;
+	padding:0.5em;
+}
+.comment {
+	padding:0.5em 0;
+}
+.question {
+	color:$dg;
+	font-weight:normal;
+}
+pre {
+	background:$lg;
+}
+.tag {
+	background:$lg;
+	padding:0.2em 0.5em;
+	border-radius:4px;
+	margin:0 0.4em 0.9em 0.4em;
+	border:1px solid $dg;
+	float:right;
+}
+.tag:hover {
+	background:$mg;
+}
+.feedback .small-profile {
+	float:right;
+	margin-bottom:0.9em;
+}
+.review, .review form {
+	float:left;
 }
 
-.mainbar {
-	margin-right: 270px;
-}
-
-.campaign {
-	
-	padding-bottom: 10px;
-}
-
-.belt {
-	float: right;
-	margin-top: -10px;
-}
-
-h3.feedback-count {
-	border-bottom: 1px solid #ccc;
-	padding-bottom: 10px;
-}
-
-.feedback-form {
-	
-}
-
-.feedback-form textarea {
-	width: 100%;
-	height: 150px;
-}
-
-code pre {
-	background: #eee;
-	padding: 5px;
-}
-
-h2 {
-	line-height: 30px;
-}
