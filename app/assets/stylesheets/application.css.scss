@@ -18,6 +18,7 @@
  */
 
 @import "grid";
+@import "colours";
 
 /* OVERRIDE STYLES */
 
@@ -64,5 +65,64 @@ a {
 .nav, .user {
 	float: right;
 }
+.nav a, .user a {
+	margin-left:0.9em;
+}
+
+.maincontent {
+	border-top:1px solid $co;
+}
+
+.tag {
+	padding:0.2em 0.5em;
+	border-radius:4px;
+	margin:0 0.4em 0.9em 0.4em;
+	border:1px solid $ca;
+	float:right;
+}
+.tag:hover {
+	background:$ca;
+}
+
+.home .tag {
+	margin:0.9em 0 0 0.4em;
+}
+
+.home .campaign, .home .small-profile {
+	margin-bottom:0.9em;
+}
+.home h1 {
+	text-align:center;
+}
 
 .clearer { clear: both }
+
+/* FORMS - move somewhere else */
+
+.button, .button_to input {
+	border-radius:8px;
+	border:1px solid $nv;
+}
+.button_to input {
+	background:#fff;
+	padding:0.4em 0.8em;
+}
+.button_to input:hover {
+	background:$nv;
+	color:#fff;
+}
+.big {
+	padding:0.9em 1.3em;
+	text-transform:uppercase;
+	margin:0px auto;
+	display:block;
+	text-align:center;
+	max-width:200px;
+}
+.green {
+	background:$co;
+	border-color:$co;
+}
+.green:hover {
+	background:#fff;
+}

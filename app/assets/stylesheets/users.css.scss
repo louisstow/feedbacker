@@ -1,9 +1,21 @@
+$an: rgb(24,171,119);
+
+$nv: rgb(5,34,81);
+
+.small-profile {
+	border:1px solid $an;
+}
 .small-profile .photo, .small-profile .details {
 	float:left;
 }
 .small-profile .details {
 	padding:0.5em;
 }
+.small-profile .details a {
+	font-size:1.1em;
+	color:$nv;
+}
 .small-profile .score {
 	display:block;
+	margin-top:0.4em;
 }

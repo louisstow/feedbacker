@@ -1,5 +1,7 @@
 <div class="feedback">
 
+	<%= render 'feedbacks/rating', feedback: feedback %>
+
 	<div class="body"><%= feedback.body %></div>
 
 	<% if feedback.user_id == session[:user_id] %>
@@ -8,8 +10,6 @@
 			<%= f.submit %>
 		<% end %>
 	<% end %>
-
-	<%= render 'feedbacks/rating', feedback: feedback %>
 
 	<div class="belt">
 		<% if feedback.user_id == session[:user_id] %>
