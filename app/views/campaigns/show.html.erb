@@ -1,10 +1,15 @@
+<div class="sidebar">
+<%= render 'users/small', user: @campaign.user %>
+</div>
+
+<div class="mainbar">
+
+<div class="campaign">
 <h2><%= @campaign.title %></h2>
 
 <div class="body">
 <%= @campaign.body %>
 </div>
-
-<%= render 'users/small', user: @campaign.user %>
 
 <div class="tag_list">
 <% @campaign.categories.each do |c| %>
@@ -19,11 +24,12 @@
 	<%= link_to 'edit', edit_campaign_path(@campaign) %>
 </div>
 <% end %>
+</div>
 
 <div class="feedbacks">
 
-<h3><%= pluralize(@campaign.feedback.count, "Feedback") %></h3>
-<% @campaign.feedback.each do |feedback| %>
+<h3 class="feedback-count"><%= pluralize(@feedbacks.size, "Feedback") %></h3>
+<% @feedbacks.each do |feedback| %>
 	<%= render 'feedbacks/show', feedback: feedback %>
 <% end %>
 
@@ -43,5 +49,7 @@
 	<a href="/login">Log in</a> or <a href="/signup">Sign up</a> to leave your feedback!
 </h3>
 <% end %>
+
+</div>
 
 </div>

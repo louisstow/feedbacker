@@ -1,3 +1,45 @@
 // Place all the styles related to the Campaign controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.sidebar {
+	float: right;
+	width: 250px;
+}
+
+.mainbar {
+	margin-right: 270px;
+}
+
+.campaign {
+	
+	padding-bottom: 10px;
+}
+
+.belt {
+	float: right;
+	margin-top: -10px;
+}
+
+h3.feedback-count {
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 10px;
+}
+
+.feedback-form {
+	
+}
+
+.feedback-form textarea {
+	width: 100%;
+	height: 150px;
+}
+
+code pre {
+	background: #eee;
+	padding: 5px;
+}
+
+h2 {
+	line-height: 30px;
+}

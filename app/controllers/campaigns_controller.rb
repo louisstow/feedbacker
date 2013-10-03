@@ -3,10 +3,13 @@ class CampaignsController < ApplicationController
 
 	def show
 		@campaign = Campaign.find(params[:id])
-		@feedbacks = Campaign.where(campaign_id: @campaign.id).order("score desc")
+		@feedbacks = Feedback.where(campaign_id: @campaign.id).joins(:user).order("rating desc, score desc")
 	end
 
 	def new
+		if !logged_in?
+			return redirect_to '/users/new', notice: "Please signup before creating a campaign"
+		end
 		@campaign = Campaign.new
 	end
 

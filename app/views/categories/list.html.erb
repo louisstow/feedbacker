@@ -1,9 +1,19 @@
+<div class="sidebar">
+
+<div class="section">
+	<%= render 'top_users' %>
+</div>
+
+</div>
+
+<div class="mainbar">	
 <h2><%= params[:name] %></h2>
 
 <% @campaigns.each do |c| %>
 	<%= render 'campaigns/small', campaign: c %>
 <% end %>
 
-<div class="section">
-	<%= render 'top_users' %>
+<% if @campaigns.size == 0 %>
+<p>No campaigns found. <a href="/campaigns/new">Create one now</a>!</p>
+<% end %>
 </div>

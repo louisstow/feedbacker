@@ -3,5 +3,18 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .comments {
-	margin-left: 50px
+	border-top: 1px dotted black;
+	margin-top: 10px;
+}
+
+.comments .comment {
+	padding: 5px;
+}
+
+.comments .comment:nth-child(odd) {
+	background: #eee;
+}
+
+.comment-form {
+	margin-top: 10px;
 }

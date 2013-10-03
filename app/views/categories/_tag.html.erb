@@ -1,4 +1,6 @@
 <span class="tag">
-	<%= link_to tag.name, "/categories/#{tag.name}" %>
-	<span class="count"><%= count %></span>
+	<a href="/categories/<%= tag.name%>">
+		<%= tag.name %>
+		<span class="count"><%= count %></span>
+	</a>
 </span>

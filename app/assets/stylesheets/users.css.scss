@@ -1,3 +1,17 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.small-profile .photo {
+	float: left;
+	margin-right: 10px;
+}
+
+.small-profile {
+	clear: both;
+}
+
+.small-profile strong {
+	display: inline-block;
+	margin-top: 10px;
+}

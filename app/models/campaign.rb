@@ -15,6 +15,8 @@ class Campaign < ActiveRecord::Base
 	validates :body, presence: true, length: { minimum: 150 }
 	validates :category_ids, length: {maximum: 5, message: " must be 5 or less"}
 
+	default_scope order('created_at desc')
+
 	def to_param
 		"#{id}/#{title}".parameterize
 	end

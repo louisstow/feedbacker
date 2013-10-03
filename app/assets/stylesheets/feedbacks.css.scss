@@ -2,10 +2,55 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-input.active {
-	border: 2px solid blue
+
+input.active[value='good'] {
+	background: green;
+}
+
+input.active[value='bad'] {
+	background: red;
 }
 
 form.edit_feedback {
 	display: none
+}
+
+.feedback .small-profile {
+	float: right;
+}
+
+.review {
+	float: left;
+}
+
+.review input {
+	width: 50px;
+	height: 30px;
+	border: 0;
+	color: white;
+	background: #888;
+	margin-bottom: 5px;
+	opacity: 0.6;
+	cursor: pointer;
+}
+
+.review input:hover {
+	opacity: 1.0;
+}
+
+.feedback {
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 10px;
+}
+
+.content {
+	margin-left: 60px;
+}
+
+strong.question {
+	color: green;
+}
+
+strong.answer {
+	color: blue;
 }

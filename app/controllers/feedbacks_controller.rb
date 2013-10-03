@@ -8,6 +8,10 @@ class FeedbacksController < ApplicationController
 			return redirect_to @campaign, notice: "Edit your existing feedback"
 		end
 
+		if current_user_id == @campaign.user_id
+			return redirect_to @campaign, notice: "Cannot leave feedback on your own campaign"
+		end
+
 		@feedback = @campaign.feedback.new(params[:feedback].permit(:body))
 		@feedback.user_id = session[:user_id]
 
@@ -95,7 +99,7 @@ class FeedbacksController < ApplicationController
 		@feedback.campaign.categories.each do |cat|
 			tag = UserCategorization.find_or_create_by(category_id: cat.id, user_id: @feedback.user_id)
 			
-			tag.increment(:score, rating)
+			tag.increment(:score, karma)
 			tag.save()
 		end
 

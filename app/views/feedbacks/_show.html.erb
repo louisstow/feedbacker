@@ -1,7 +1,14 @@
-<div class="feedback">
-	<%= render 'users/small', user: feedback.user %>
+<div class="feedback" id="feedback<%= feedback.id %>">
+	
+	<%= render 'feedbacks/rating', feedback: feedback %>
+
+	<div class="content">
 
 	<div class="body"><%= feedback.body %></div>
+
+	<%= render 'users/small', user: feedback.user %>
+
+	<div class="clearer"></div>
 
 	<% if feedback.user_id == session[:user_id] %>
 		<%= form_for feedback do |f| %>
@@ -10,7 +17,7 @@
 		<% end %>
 	<% end %>
 
-	<%= render 'feedbacks/rating', feedback: feedback %>
+	
 
 	<div class="belt">
 		<% if feedback.user_id == session[:user_id] %>
@@ -22,5 +29,7 @@
 
 	<div class="comments">
 		<%= render 'comments/show', feedback: feedback %>
+	</div>
+
 	</div>
 </div>

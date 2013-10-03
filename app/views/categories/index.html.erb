@@ -1,6 +1,6 @@
 <h2>Browse Categories</h2>
 
-<ul>
+<ul class="categories">
 <% @categories.each do |c| %>
 	<li>
 		<%= link_to c.name, '/categories/' << c.name %>
