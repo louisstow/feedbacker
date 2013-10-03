@@ -39,12 +39,14 @@ gem 'composite_primary_keys'
 
 gem 'activeadmin', github: 'gregbell/active_admin', branch: 'rails4'
 
+#gem 'rack-mini-profiler'
+
 #gem 'activerecord-import', '0.4.0'
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano', group: :development
+gem 'capistrano', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
