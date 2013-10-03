@@ -1,24 +1,28 @@
-<div class="section">
-	<h1>Get feedback for your ideas!</h1>
-	<a href="/campaigns/new" class="big button">Create a Campaign</a>
+<div class="section group">	
+	<div class="col span_3_of_3">
+		<h1>Get feedback for your ideas!</h1>
+		<a href="/campaigns/new" class="big button">Create a Campaign</a>
+	</div>
 </div>
 
-<div class="section">
-	<h2>Give feedback</h2>
-	
-	<ul>
-		<% @recent.each do |c| %>
-			<%= render 'campaigns/small', campaign: c %>
-		<% end %>
-	</ul>
-</div>
+<div class="section group">
+	<div class="col span_2_of_3">
+		<h2>Give feedback</h2>
+		
+		<ul>
+			<% @recent.each do |c| %>
+				<%= render 'campaigns/small', campaign: c %>
+			<% end %>
+		</ul>
+	</div>
 
-<div class="section">
-	<h2>Top Feedbackers</h2>
-	
-	<ul>
-		<% @backers.each do |u| %>
-			<%= render 'users/small', user: u %>
-		<% end %>
-	</ul>
+	<div class="col span_1_of_3">
+		<h2>Top Feedbackers</h2>
+		
+		<ul>
+			<% @backers.each do |u| %>
+				<%= render 'users/small', user: u %>
+			<% end %>
+		</ul>
+	</div>
 </div>

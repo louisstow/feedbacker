@@ -1,5 +1,4 @@
 <div class="feedback">
-	<%= render 'users/small', user: feedback.user %>
 
 	<div class="body"><%= feedback.body %></div>
 
@@ -19,6 +18,10 @@
 			<%= link_to 'remove', feedback, method: :delete %>
 		<% end %>
 	</div>
+
+	<%= render 'users/small', user: feedback.user %>
+
+	<div class="clearer"></div>
 
 	<div class="comments">
 		<%= render 'comments/show', feedback: feedback %>

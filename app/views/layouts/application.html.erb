@@ -13,16 +13,9 @@
 	<div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
-<div id="header">
+<div id="header" class="headercontent">
 	<div class="logo">
 		<a href="/">Feedbacker</a>
-	</div>
-
-	<div class="nav">
-		<ul>
-			<li><a href="/browse">Browse</a></li>
-			<li><a href="/campaigns/new">Create Campaign</a></li>
-		</ul>
 	</div>
 
 	<div class="user">
@@ -36,10 +29,18 @@
 			<% end %>
 		</ul>
 	</div>
-</div>
-<div class="clearer"></div>
 
-<div id="page">
+	<div class="nav">
+		<ul>
+			<li><a href="/browse">Browse</a></li>
+			<li><a href="/campaigns/new">Create Campaign</a></li>
+		</ul>
+	</div>
+
+	<div class="clearer"></div>
+</div>
+
+<div id="page" class="maincontent">
 <%= yield %>
 </div>
 
