@@ -70,10 +70,10 @@ $pi: rgb(194,62,85);
 p ~ .question, p ~ .answer {
 	margin-left:0.9em;
 }
-.question {
+strong.question {
 	color:$pi;
 }
-.answer {
+strong.answer {
 	color:$an;
 }
 pre {

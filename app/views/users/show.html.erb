@@ -12,8 +12,12 @@
 	<a href="/change-password">Change Password</a>
 <% end %>
 
-<h2><%= @user.full_name %> <span class="score"><%= @user.score %></span></h2>
-<p><%= @user.bio %></p>
+<div class="details">
+	<h2><%= @user.full_name %> <span class="score"><%= @user.score %></span></h2>
+	<p><%= @user.bio %></p>
+</div>
+
+<div class="clearer"></div>
 
 <h3>Campaigns</h3>
 <% @campaigns.each do |c| %>

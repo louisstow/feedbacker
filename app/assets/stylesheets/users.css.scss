@@ -5,10 +5,14 @@ $nv: rgb(5,34,81);
 .small-profile {
 	border-top:1px solid $an;
 }
-.small-profile .photo, .small-profile .details {
+.profile .photo, .profile h2, .profile .details, .small-profile .photo, .small-profile .details {
 	float:left;
 }
-.small-profile .details {
+.profile {
+	padding:0.9em 0;
+	margin-bottom:0.9em;
+}
+.profile .details, .profile .details, .small-profile .details {
 	padding: 0 0.5em;
 }
 .small-profile .details a {
