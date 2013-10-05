@@ -1,6 +1,6 @@
 /* need to break up feedback, comments etc (?) */
 
-$lg: rgb(242,237,228);
+$lg: #f6f6f2;
 
 $qu: rgb(234,96,68);
 $ca: rgb(255,164,115);
@@ -9,8 +9,10 @@ $co: rgb(123,225,154);
 
 $nv: rgb(5,34,81);
 
+$pi: rgb(194,62,85);
+
 .campaign {
-	border:1px solid $ca;
+	border-top:1px solid $pi;
 }
 .camptitle, .campaign h2 {
 	color:$nv;
@@ -30,10 +32,10 @@ $nv: rgb(5,34,81);
 	margin:0 0 0.9em 0;
 }
 .feedbacks {
-	border:1px solid $an;
+	border-top:1px solid $an;
 }
 .feedback {
-	border:1px solid $co;
+	border-top:1px solid $co;
 }
 .campaign, .campaign pre, .small-profile, .feedbacks {
 	padding:0.9em;
@@ -69,7 +71,7 @@ p ~ .question, p ~ .answer {
 	margin-left:0.9em;
 }
 .question {
-	color:$qu;
+	color:$pi;
 }
 .answer {
 	color:$an;
